@@ -1,0 +1,17 @@
+Pregunta 1.
+
+Si remuevo el método .lower(), Python trata las palabras con distintas mayúsculas como términos completamente diferentes. El diccionario guarda claves separadas (por ejemplo, "Sol", "sol", "SOL" con frecuencia 1 cada una) en lugar de unificarlas. Al ejecutar pytest, falla arrojándome un error de aserción (AssertionError), ya que el test espera encontrar la clave "sol" con un valor acumulado de 3, pero no la encuentra (o si la encuentra está fragmentada). 
+
+Pregunta 2.
+
+Recibe el string porque la cambié precisamente para que haga eso, que reciba directamente un string (texto), así la función ahora solo se dedica a procesar texto. Además un string directamente desacopla la lógica de la función de la lectura de archivos. La gran ventaja a la hora de escribir pruebas automáticas es que es necesario crear ni manipular archivos de texto temporales en la computadora. Podemos pasar de forma rápida y aislada cadenas de texto directamente como argumentos.
+
+Pregunta 3
+
+Un "caso de borde" muy útil son los espacios múltiples o los saltos de línea redundantes porque verifica que la función no cuente “palabras vacías” ni altere las frecuencias cuando el texto tiene formato irregular. La prueba que implementé es la siguiente:
+
+def test_frecuencias_espacios_y_puntuacion():
+resultado = contar_frecuencias("  hola   mundo  ")
+assert resultado["hola"] == 1
+assert resultado["mundo"] == 1
+
